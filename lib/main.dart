@@ -56,7 +56,7 @@ class _GojuonTableState extends State<GojuonTable> {
     // た行
     'た': ['た', 'だ'],
     'ち': ['ち', 'ぢ', 'ちゃ', 'ちゅ', 'ちょ', 'ぢゃ', 'ぢゅ', 'ぢょ'],
-    'つ': ['つ', 'づ'],
+    'つ': ['つ', 'づ', 'っ'],
     'て': ['て', 'で'],
     'と': ['と', 'ど'],
     // な行（拗音）
@@ -463,32 +463,36 @@ class _GojuonTableState extends State<GojuonTable> {
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  // 50音表の幅に合わせる: 10列 × 90.0 + ボーダー11本 × 2.0 = 922.0
-                  width: 922.0,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                    vertical: 20.0,
-                  ),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black, width: 2.0),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: Center(
-                    child: Text(
-                      selectedCharacters,
-                      style: const TextStyle(
-                        fontSize: 36,
-                        fontWeight: FontWeight.normal,
+                Expanded(
+                  child: Container(
+                    // 50音表の幅に合わせる: 10列 × 90.0 + ボーダー11本 × 2.0 = 922.0
+                    width: 922.0,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0,
+                      vertical: 20.0,
+                    ),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black, width: 2.0),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        selectedCharacters,
+                        style: const TextStyle(
+                          fontSize: 36,
+                          fontWeight: FontWeight.normal,
+                        ),
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 16.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                const SizedBox(width: 16.0),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     ElevatedButton(
                       onPressed: selectedCharacters.isNotEmpty
@@ -496,7 +500,7 @@ class _GojuonTableState extends State<GojuonTable> {
                           : null,
                       child: const Text('1文字削除'),
                     ),
-                    const SizedBox(width: 16.0),
+                    const SizedBox(height: 8.0),
                     ElevatedButton(
                       onPressed: selectedCharacters.isNotEmpty
                           ? _clearAllCharacters
