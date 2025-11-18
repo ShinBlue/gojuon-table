@@ -1,17 +1,51 @@
-# coco_on_proj
+# 50音表アプリ (Gojuon Table)
 
-A new Flutter project.
+Flutterで作成された50音表アプリです。ひらがなをタップして文字を入力できます。
 
-## Getting Started
+## 機能
 
-This project is a starting point for a Flutter application.
+- 50音表からの文字入力
+- 濁音・半濁音・拗音の選択機能
+  - か行、さ行、た行、は行の濁音選択
+  - き・し・ち・ひ・ふの特殊な選択メニュー
+- 入力文字の表示と削除機能
 
-A few resources to get you started if this is your first Flutter project:
+## デプロイ方法
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+このアプリはGitHub Pagesでデプロイされます。
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# gojuon-table
+### 自動デプロイ（推奨）
+
+1. GitHubのリポジトリのSettings → Pagesにアクセス
+2. Sourceを「GitHub Actions」に設定
+3. `main`ブランチにプッシュすると自動的にデプロイされます
+
+### 手動デプロイ
+
+```bash
+# Webアプリをビルド
+flutter build web --release --base-href "/gojuon-table/"
+
+# gh-pagesブランチにデプロイ（オプション）
+git checkout --orphan gh-pages
+git add build/web -f
+git commit -m "Deploy to GitHub Pages"
+git push origin gh-pages --force
+```
+
+## 開発
+
+```bash
+# 依存関係のインストール
+flutter pub get
+
+# アプリの実行（Web）
+flutter run -d chrome
+
+# ビルド（Web）
+flutter build web --release
+```
+
+## ライセンス
+
+MIT License
